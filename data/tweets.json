@@ -1,0 +1,20 @@
+{
+  "tweets": [
+    {
+      "id": "0",
+      "text": "Tweet/0 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius quo veritatis ad rerum fugit culpa inventore cumque recusandae asperiores eos hic minus esse suscipit, dolorem ex, deserunt libero, provident aut."
+    },
+    {
+      "id": "1",
+      "text": "Tweet/1 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius quo veritatis ad rerum fugit culpa inventore cumque recusandae asperiores eos hic minus esse suscipit, dolorem ex, deserunt libero, provident aut."
+    },
+    {
+      "id": "2",
+      "text": "Tweet/2 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius quo veritatis ad rerum fugit culpa inventore cumque recusandae asperiores eos hic minus esse suscipit, dolorem ex, deserunt libero, provident aut."
+    },
+    {
+      "id": "3",
+      "text": "Tweet/3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius quo veritatis ad rerum fugit culpa inventore cumque recusandae asperiores eos hic minus esse suscipit, dolorem ex, deserunt libero, provident aut."
+    }
+  ]
+}

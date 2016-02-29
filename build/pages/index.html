@@ -1,0 +1,15 @@
+<div class="col-xs-4 col-xs-offset-4">
+  <user-panel></user-panel>
+  <h4>Tweets</h4>
+  <tweet ng-repeat="tweet in tweets"></tweet>
+
+  <space></space>
+
+  <form class="input-group input-group-lg" ng-submit="addTweet()">
+    <input type="text" class="form-control" ng-model="newTweetText">
+    <div class="input-group-btn">
+      <button type="submit" class="btn btn-primary">add tweet</button>
+    </div>
+  </form>
+
+</div>
