@@ -17,9 +17,9 @@ window.app.config(['$routeProvider', '$locationProvider', 'localStorageServicePr
       controller: 'IndexPageController'
     })
   
-  $locationProvider.html5Mode
-    enabled: true
-    requireBase: false
+  $locationProvider.html5Mode()
+    # enabled: true
+    # requireBase: false
 
   localStorageServiceProvider.setPrefix('twtrApp')
 ])
@@ -27,5 +27,6 @@ window.app.config(['$routeProvider', '$locationProvider', 'localStorageServicePr
 window.app.run(['$rootScope', '$location', 'authService', ($rootScope, $location, auth) ->
 
   $rootScope.$on '$routeChangeStart', (e) ->
+    console.log 'user isLogged', auth.isLogged()
     $location.path('/signin') unless auth.isLogged()
 ])

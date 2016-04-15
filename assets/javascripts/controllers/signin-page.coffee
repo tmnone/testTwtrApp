@@ -1,6 +1,7 @@
 window.app.controller 'SigninPageController',
-  ['$scope', 'authService', 'UserEntity', ($scope, auth, UserEntity) ->
+  ['$scope', '$location', 'authService', 'UserEntity', ($scope, $location, auth, UserEntity) ->
 
     $scope.userSignIn = () ->
-      auth.signIn()
+      auth.login($scope.email, $scope.password).then (res) ->
+        $location.path('/')
   ]

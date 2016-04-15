@@ -2,7 +2,6 @@ window.app.factory 'TweetEntity',
   [ ->
     class TweetEntity
       constructor: (attrs = {})->
-        @id = attrs.id || 0
-        @user_id = attrs.user_id || 0
+        # @_name = "Tweets"
         @text = attrs.text
   ]

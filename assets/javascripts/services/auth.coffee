@@ -1,18 +1,25 @@
 app.factory 'authService',
-  ['$location', '$rootScope', 'localStorageService',
-  ($location, $rootScope, localStorageService)->
+  ['$location', '$rootScope', 'localStorageService', 'backendService',
+  ($location, $rootScope, localStorageService, backend)->
     class Auth
-      constructor: ->
-        @store = localStorageService
+      
+      login: (email, pass) ->
+        backend.login(email, pass).then ((user) ->
+          localStorageService.set('userIsLogged', true)
+          localStorageService.set('currentUser', user)
+        ), (error) ->
+          console.log 'Error', error
 
-      signIn: () ->
-        @store.set('userIsLogged', true)
+      logout: () ->
+        backend.logout().then () ->
+          localStorageService.remove('userIsLogged')
+          localStorageService.remove('currentUser')
 
-      signOut: () ->
-        @store.set('userIsLogged', false)
+      getCurrentUser: () ->
+        localStorageService.get('currentUser')
 
       isLogged: () ->
-        @store.get('userIsLogged')
+        localStorageService.get('userIsLogged')
     
     new Auth()
   ]

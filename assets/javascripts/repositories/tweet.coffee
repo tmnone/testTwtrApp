@@ -1,18 +1,15 @@
 window.app.factory 'tweetsRepository',
-  ['tweetResource', (resource) ->
+  ['backendService', (backend) ->
     class TweetsRepository
 
-      readAll: () ->
-        resource.readAll().$promise
-
-      read: (id) ->
-        resource.readAll().$promise
+      readAll: (userId) ->
+        backend.readAll(userId)
 
       addTweet: (tweet) ->
-        resource.addTweet(tweet).$promise
+        backend.addTweet(tweet)
 
       removeTweet: (tweet) ->
-        resource.removeTweet(tweet).$promise
+        backend.removeTweet(tweet)
 
     new TweetsRepository()
   ]

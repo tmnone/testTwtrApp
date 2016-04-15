@@ -1,8 +1,11 @@
 window.app.controller 'TweetPageController',
-  ['$scope', '$routeParams', 'tweetsRepository', ($scope, $routeParams, tweetsRepository) ->
+  ['$rootScope', '$scope', '$routeParams', 'tweetsRepository', ($rootScope, $scope, $routeParams, tweetsRepository) ->
     
-    $scope.tweetId = $routeParams.id
-    tweetsRepository.readAll().then (response) ->
-      $scope.tweet = response[$scope.tweetId]
+
+    console.log '$rootScope.currentUser', $rootScope.currentUser
+
+    # $scope.tweetId = $routeParams.id
+    # tweetsRepository.readAll().then (response) ->
+    #   $scope.tweet = response[$scope.tweetId]
 
   ]

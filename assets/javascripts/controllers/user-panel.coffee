@@ -1,10 +1,10 @@
 window.app.controller 'UserPanelController',
-  ['$scope', 'authService', '$location', ($scope, auth, $location) ->
+  ['$rootScope', '$scope', 'authService', '$location', 'backendService', ($rootScope, $scope, auth, $location, backend) ->
 
-    $scope.name = 'User name'
+    $scope.name = auth.getCurrentUser().email
 
     $scope.userSignOut = () ->
-      auth.signOut()
-      $location.path('/signin')
+      auth.logout().then () ->
+        $location.path('/signin')
 
   ]
