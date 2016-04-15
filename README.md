@@ -4,8 +4,8 @@
 `npm install --global gulp`
 ### 3. Install npm modules
 Run `npm install` in project folder
-### 4. Start Backend Server and Frontend Server
-`npm run dev`
+### 4. Start Server
+`gulp`
 
 <!-- ## 5. Run tests
 `gulp test` -->
