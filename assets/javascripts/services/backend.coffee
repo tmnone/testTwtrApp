@@ -9,41 +9,43 @@ app.factory 'backendService',
 
         # Wrappers
         @bl = Backendless
-        
+
         # Init 
         @bl.initApp(appId, secretKey, version)
 
+        @UserService = @bl.UserService
+        @TweetService = @bl.Persistence.of("Tweets")
+
+      promiseWrapper: () ->
+        service = arguments[0]
+        method = arguments[1]
+        defer = $q.defer()
+        blAsync = new @bl.Async(defer.resolve, defer.reject)
+        i = 2
+        args = []
+
+        while i < arguments.length
+          args.push arguments[i]
+          i++
+        args.push blAsync
+        service[method].apply(service, args)
+        defer.promise
 
       login: (email, pass) ->
-        defer = $q.defer()
-        blAsync = new @bl.Async(defer.resolve, defer.reject)
-        @bl.UserService.login(email, pass, true, blAsync)
-        defer.promise
+        @promiseWrapper(@UserService, 'login', email, pass, true)
 
       logout: () ->
-        defer = $q.defer()
-        blAsync = new @bl.Async(defer.resolve, defer.reject)
-        @bl.UserService.logout(blAsync)
-        defer.promise
+        @promiseWrapper(@UserService, 'logout')
 
       readAll: (ownerId) ->
-        defer = $q.defer()
-        blAsync = new @bl.Async(defer.resolve, defer.reject)
         query = { condition: "ownerId = '#{ownerId}'" }
-        @bl.Persistence.of("Tweets").find( query, blAsync )
-        defer.promise
+        @promiseWrapper(@TweetService, 'find', query)
 
       addTweet: (tweet) ->
-        defer = $q.defer()
-        blAsync = new @bl.Async(defer.resolve, defer.reject)
-        @bl.Persistence.of("Tweets").save( tweet, blAsync )
-        defer.promise
+        @promiseWrapper(@TweetService, 'save', tweet)
 
       removeTweet: (tweet) ->
-        defer = $q.defer()
-        blAsync = new @bl.Async(defer.resolve, defer.reject)
-        @bl.Persistence.of("Tweets").remove( tweet, blAsync )
-        defer.promise
+        @promiseWrapper(@TweetService, 'remove', tweet)
 
     new Backend()
   ]
